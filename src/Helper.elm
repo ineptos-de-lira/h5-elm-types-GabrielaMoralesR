@@ -11,7 +11,7 @@ type GradeStatus
 
 gradetoCategory : Float -> GradeStatus
 gradetoCategory grade =
-    if grade > 7.0 then
+    if grade >= 7.0 then
         Approved
 
     else if grade < 0.0 then
@@ -21,9 +21,9 @@ gradetoCategory grade =
         Failed
 
 
-categoricalGrade : (Float -> GradeStatus) -> List Float -> List GradeStatus
-categoricalGrade gradetoCategory1 grades =
-    List.map gradetoCategory1 grades
+categoricalGrade : List Float -> List GradeStatus
+categoricalGrade grades =
+    List.map gradetoCategory grades
 
 
 
@@ -41,18 +41,18 @@ airplaneScheduleAction : AirplaneStatus -> String
 airplaneScheduleAction accion =
     case accion of
         OnTime ->
-            "Pedir reembolso"
+            "Esperar"
 
         Boarding ->
-            "Esperar"
+            "Buscar boleto"
 
         Delayed ->
             "Esperar"
 
         Cancelled ->
-            "Buscar boleto"
+            "Pedir reembolso"
 
 
-airportAction : (AirplaneStatus -> String) -> List AirplaneStatus -> List String
-airportAction accion estado =
-    List.map accion estado
+airportAction : List AirplaneStatus -> List String
+airportAction accion =
+    List.map airplaneScheduleAction accion
