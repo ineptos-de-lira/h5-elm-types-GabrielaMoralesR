@@ -30,14 +30,14 @@ categoricalGrade gradetoCategory1 grades =
 --Aeropuerto
 
 
-type AireplaneStatus
+type AirplaneStatus
     = OnTime
     | Boarding
     | Delayed
     | Cancelled
 
 
-airplaneScheduleAction : AireplaneStatus -> String
+airplaneScheduleAction : AirplaneStatus -> String
 airplaneScheduleAction accion =
     case accion of
         OnTime ->
@@ -53,6 +53,6 @@ airplaneScheduleAction accion =
             "Buscar boleto"
 
 
-airportAction : (AireplaneStatus -> String) -> List AireplaneStatus -> List String
+airportAction : (AirplaneStatus -> String) -> List AirplaneStatus -> List String
 airportAction accion estado =
     List.map accion estado
